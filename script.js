@@ -3,7 +3,7 @@ const restaurantsData = {
     "66grill": {
         name: "66 Grill",
         logo: "🔥",
-        phone: "07843265253",
+        phone: "07833488289",
         location: "الضلوعية - الشارع الحولي",
         rating: "4.9",
         workHours: "12:00 م - 12:00 ص",
