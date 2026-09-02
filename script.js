@@ -3,26 +3,92 @@ const restaurantsData = {
     "66grill": {
         name: "66 Grill",
         logo: "🔥",
-        phone: "07837779033",
+        phone: "07783060757",
         location: "الضلوعية - الشارع الحولي",
         rating: "4.9",
         workHours: "12:00 م - 12:00 ص",
         deliveryFee: 2000,
-        categories: ["الكل", "المشاوي", "البركر والوجبات", "المقبلات والأصناف المضافة"],
+        categories: ["الكل", "بركر لحم على الفحم", "بركر دجاج", "السندويشات", "الكنتاكي", "الصاج", "شاورما على الفحم", "ريزو", "المقبلات والجانبيات", "المشروبات"],
         items: [
-            { id: "66g_1", name: "كباب لحم 66 المخصوص (نفر)", price: 12000, category: "المشاوي", desc: "كباب لحم بقري وغنم عراقي مشوي على الفحم مع الخضار والخبز" },
-            { id: "66g_2", name: "شيش طاووق دجاج فاخر", price: 10000, category: "المشاوي", desc: "قطع دجاج متبلة بالبهارات الخاصة ومقرمشة مشوية بامتياز" },
-            { id: "66g_3", name: "تكّة لحم غنم طازج", price: 14000, category: "المشاوي", desc: "قطع لحم غنم طازجة مشوية على الفحم بالطريقة العراقية" },
-            { id: "66g_4", name: "مشاوي مشكل 66 (كيلو)", price: 40000, category: "المشاوي", desc: "تشكيلة فاخرة من الكباب، الطاووق، والتكّة مع المقبلات" },
-            { id: "66g_5", name: "دجاج شواية كامل مع التمن", price: 16000, category: "المشاوي", desc: "دجاجة كاملة محمرة بخلطة 66 مع الرز العراقي الفاخر" },
-            { id: "66g_6", name: "بركر لحم كلاسيك 66", price: 6000, category: "البركر والوجبات", desc: "لحم بقري صافي مع الجبن والصوص المخصوص والبطاطا" },
-            { id: "66g_7", name: "وجبة بركر دجاج دبل", price: 7500, category: "البركر والوجبات", desc: "شريحتين دجاج مع الفنكر والمشروب الغازي" },
-            { id: "66g_8", name: "زنجر سوبريم 66", price: 7000, category: "البركر والوجبات", desc: "صدر دجاج مقرمش مع الجبن والصوص الحار" },
-            { id: "66g_9", name: "وجبة كريسبي دجاج", price: 8000, category: "البركر والوجبات", desc: "قطع دجاج كريسبي مع بطاطا وسلطة ملفوف" },
-            { id: "66g_10", name: "صحن مقبلات مشكل كبير", price: 5000, category: "المقبلات والأصناف المضافة", desc: "حمص، متبل، بابا غنوج، وسلطات متنوعة" },
-            { id: "66g_11", name: "صحن مقبلات صغير", price: 3000, category: "المقبلات والأصناف المضافة", desc: "مقبلات باردة مشكلة" },
-            { id: "66g_12", name: "بطاطا فنكر عائلي", price: 3500, category: "المقبلات والأصناف المضافة", desc: "بطاطا مقرمشة ذهبية" },
-            { id: "66g_13", name: "حلقات بصل مقرمشة (6 قطع)", price: 2500, category: "المقبلات والأصناف المضافة", desc: "حلقات بصل مع صوص الثوم" }
+            // بركر لحم على الفحم
+            { id: "66g_1", name: "بركر لحم (ساندويش)", price: 3000, category: "بركر لحم على الفحم" },
+            { id: "66g_2", name: "بركر لحم (وجبة)", price: 5000, category: "بركر لحم على الفحم" },
+            { id: "66g_3", name: "بركر لحم بلجبن (ساندويش)", price: 3500, category: "بركر لحم على الفحم" },
+            { id: "66g_4", name: "بركر لحم بلجبن (وجبة)", price: 5000, category: "بركر لحم على الفحم" },
+            { id: "66g_5", name: "بركر لحم دبل (ساندويش)", price: 5000, category: "بركر لحم على الفحم" },
+            { id: "66g_6", name: "بركر لحم دبل (وجبة)", price: 6000, category: "بركر لحم على الفحم" },
+            { id: "66g_7", name: "بركر لحم دبل بلجبن (ساندويش)", price: 5500, category: "بركر لحم على الفحم" },
+            { id: "66g_8", name: "بركر لحم دبل بلجبن (وجبة)", price: 6500, category: "بركر لحم على الفحم" },
+            { id: "66g_9", name: "مشروم بركر (ساندويش)", price: 4000, category: "بركر لحم على الفحم" },
+            { id: "66g_10", name: "مشروم بركر (وجبة)", price: 6000, category: "بركر لحم على الفحم" },
+            { id: "66g_11", name: "هيمي بركر لحم", price: 4500, category: "بركر لحم على الفحم" },
+            { id: "66g_12", name: "سبشل بركر لحم", price: 6000, category: "بركر لحم على الفحم" },
+            { id: "66g_13", name: "ارجينال بركر لحم (ساندويش)", price: 5000, category: "بركر لحم على الفحم" },
+            { id: "66g_14", name: "ارجينال بركر لحم (وجبة)", price: 6000, category: "بركر لحم على الفحم" },
+            { id: "66g_15", name: "شيتوس بركر لحم", price: 5000, category: "بركر لحم على الفحم" },
+            { id: "66g_16", name: "بركر لحم 66 الخاص", price: 7000, category: "بركر لحم على الفحم" },
+            { id: "66g_17", name: "سماش بركر", price: 5000, category: "بركر لحم على الفحم" },
+
+            // بركر دجاج
+            { id: "66g_18", name: "بركر دجاج (ساندويش)", price: 2500, category: "بركر دجاج" },
+            { id: "66g_19", name: "بركر دجاج (وجبة)", price: 3500, category: "بركر دجاج" },
+            { id: "66g_20", name: "بركر دجاج بلجبن (ساندويش)", price: 3000, category: "بركر دجاج" },
+            { id: "66g_21", name: "بركر دجاج بلجبن (وجبة)", price: 4000, category: "بركر دجاج" },
+            { id: "66g_22", name: "بركر دجاج دبل (ساندويش)", price: 4000, category: "بركر دجاج" },
+            { id: "66g_23", name: "بركر دجاج دبل (وجبة)", price: 5000, category: "بركر دجاج" },
+            { id: "66g_24", name: "بركر دجاج دبل بلجبن (ساندويش)", price: 4000, category: "بركر دجاج" },
+            { id: "66g_25", name: "بركر دجاج دبل بلجبن (وجبة)", price: 5000, category: "بركر دجاج" },
+            { id: "66g_26", name: "شيتوس بركر دجاج", price: 5000, category: "بركر دجاج" },
+
+            // السندويشات
+            { id: "66g_27", name: "زنجر", price: 3500, category: "السندويشات" },
+            { id: "66g_28", name: "كريسبي", price: 3500, category: "السندويشات" },
+            { id: "66g_29", name: "فلر", price: 4000, category: "السندويشات" },
+            { id: "66g_30", name: "سكالوب", price: 4000, category: "السندويشات" },
+
+            // الكنتاكي
+            { id: "66g_31", name: "وجبة كنتاكي 3 قطع", price: 6000, category: "الكنتاكي" },
+            { id: "66g_32", name: "وجبة كنتاكي 5 قطع", price: 9000, category: "الكنتاكي" },
+            { id: "66g_33", name: "وجبة كنتاكي 10 قطع", price: 16000, category: "الكنتاكي" },
+            { id: "66g_34", name: "وجبة ستربس 4 قطع", price: 6000, category: "الكنتاكي" },
+            { id: "66g_35", name: "وجبة ستربس 6 قطع", price: 8000, category: "الكنتاكي" },
+            { id: "66g_36", name: "وجبة ستربس 12 قطعة", price: 15000, category: "الكنتاكي" },
+
+            // الصاج
+            { id: "66g_37", name: "صاج كريسبي", price: 3500, category: "الصاج" },
+            { id: "66g_38", name: "وجبة صاج كريسبي صغير", price: 5000, category: "الصاج" },
+            { id: "66g_39", name: "وجبة صاج كريسبي عائلي", price: 10000, category: "الصاج" },
+
+            // شاورما على الفحم
+            { id: "66g_40", name: "صاج شاورما دجاج", price: 2500, category: "شاورما على الفحم" },
+            { id: "66g_41", name: "لفه شاورما دجاج", price: 3000, category: "شاورما على الفحم" },
+            { id: "66g_42", name: "وجبة شاورما دجاج عالفتحم", price: 5000, category: "شاورما على الفحم" },
+            { id: "66g_43", name: "وجبة شاورما دجاج عائلي", price: 10000, category: "شاورما على الفحم" },
+            { id: "66g_44", name: "وجبة 66 الخاصة", price: 5000, category: "شاورما على الفحم" },
+            { id: "66g_45", name: "وجبة شاورما دجاج عائلي دبل", price: 15000, category: "شاورما على الفحم" },
+            { id: "66g_46", name: "ربع كيلو شاورما دجاج", price: 8000, category: "شاورما على الفحم" },
+            { id: "66g_47", name: "نصف كيلو شاورما دجاج", price: 17000, category: "شاورما على الفحم" },
+            { id: "66g_48", name: "كيلو شاورما دجاج", price: 25000, category: "شاورما على الفحم" },
+
+            // ريزو
+            { id: "66g_49", name: "ريزو مقرمش", price: 5000, category: "ريزو" },
+            { id: "66g_50", name: "ريزو عائلي مقرمش", price: 10000, category: "ريزو" },
+            { id: "66g_51", name: "ريزو شاورما", price: 5000, category: "ريزو" },
+            { id: "66g_52", name: "ريزو عائلي شاورما", price: 10000, category: "ريزو" },
+
+            // المقبلات والجانبيات
+            { id: "66g_53", name: "مقبلات صغير", price: 1500, category: "المقبلات والجانبيات" },
+            { id: "66g_54", name: "مقبلات وسط", price: 2500, category: "المقبلات والجانبيات" },
+            { id: "66g_55", name: "مقبلات كبير", price: 4000, category: "المقبلات والجانبيات" },
+            { id: "66g_56", name: "فنكر صغير", price: 1000, category: "المقبلات والجانبيات" },
+            { id: "66g_57", name: "فنكر بلجبن", price: 1500, category: "المقبلات والجانبيات" },
+            { id: "66g_58", name: "صحن فنكر", price: 3500, category: "المقبلات والجانبيات" },
+            { id: "66g_59", name: "صحن بلجبن", price: 3500, category: "المقبلات والجانبيات" },
+
+            // المشروبات
+            { id: "66g_60", name: "بيبسي", price: 500, category: "المشروبات" },
+            { id: "66g_61", name: "سفن", price: 500, category: "المشروبات" },
+            { id: "66g_62", name: "ماء", price: 250, category: "المشروبات" }
         ]
     },
     "yala_eat": {
@@ -258,7 +324,7 @@ function renderRestaurantInfo() {
                     <span><i class="fa-solid fa-clock text-amber-500 ml-1"></i> ${rest.workHours}</span>
                 </div>
             </div>
-            <a href="https://wa.me/964${rest.phone.substring(1)}" target="_blank" class="inline-flex items-center justify-center gap-2 bg-emerald-950/80 text-emerald-400 border border-emerald-500/40 px-5 py-2.5 rounded-xl font-extrabold text-xs hover:bg-emerald-900 transition-all">
+            <a href="https://api.whatsapp.com/send?phone=964${rest.phone.substring(1)}" target="_blank" class="inline-flex items-center justify-center gap-2 bg-emerald-950/80 text-emerald-400 border border-emerald-500/40 px-5 py-2.5 rounded-xl font-extrabold text-xs hover:bg-emerald-900 transition-all">
                 <i class="fa-brands fa-whatsapp text-base"></i> التواصل المباشر
             </a>
         </div>
@@ -636,7 +702,7 @@ function openLuckyWheel() {
     popSound.play();
     Swal.fire({
         title: '🎡 عجلة الحظ الذهبية اليومية',
-        html: `ادرر العجلة للحصول على خصم ملكي فوري ينزل بسلتك مباشرة!`,
+        html: `ادر العجلة للحصول على خصم ملكي فوري ينزل بسلتك مباشرة!`,
         confirmButtonText: '👑 ادر العجلة الآن!',
         showCancelButton: true,
         cancelButtonText: 'إغلاق'
@@ -726,5 +792,6 @@ function sendOrderWhatsApp() {
     });
     successSound.play();
 
-    window.open(`https://wa.me/${targetPhone}?text=${encoded}`, '_blank');
+    // التعديل المباشر للتوجيه لـ WhatsApp App
+    window.open(`https://api.whatsapp.com/send?phone=${targetPhone}&text=${encoded}`, '_blank');
 }
