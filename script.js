@@ -730,7 +730,7 @@ function openLuckyWheel() {
     });
 }
 
-// WhatsApp Integration
+// WhatsApp Integration - Direct App Trigger
 function sendOrderWhatsApp() {
     if (cart.length === 0) {
         alert("سلتك فارغة! يرجى إضافة وجبات قبل إرسال الطلب.");
@@ -785,13 +785,17 @@ function sendOrderWhatsApp() {
     const encoded = encodeURIComponent(message);
     const targetPhone = "964" + rest.phone.substring(1);
 
-    confetti({
-        particleCount: 100,
-        spread: 80,
-        origin: { y: 0.5 }
-    });
-    successSound.play();
+    // التوجيه المباشر للهاتف أو الكمبيوتر دون حظر المتصفح
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+        window.location.href = `whatsapp://send?phone=${targetPhone}&text=${encoded}`;
+    } else {
+        window.open(`https://web.whatsapp.com/send?phone=${targetPhone}&text=${encoded}`, '_blank');
+    }
 
-    // التعديل المباشر للتوجيه لـ WhatsApp App
-    window.open(`https://api.whatsapp.com/send?phone=${targetPhone}&text=${encoded}`, '_blank');
+    try {
+        confetti({ particleCount: 100, spread: 80, origin: { y: 0.5 } });
+        successSound.play();
+    } catch(e) {}
 }
