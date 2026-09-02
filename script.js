@@ -3,7 +3,7 @@ const restaurantsData = {
     "66grill": {
         name: "66 Grill",
         logo: "🔥",
-        phone: "07783060757",
+        phone: "07843265253",
         location: "الضلوعية - الشارع الحولي",
         rating: "4.9",
         workHours: "12:00 م - 12:00 ص",
@@ -212,7 +212,7 @@ let currentSort = "default";
 let deliveryType = "delivery";
 let cart = [];
 let favorites = JSON.parse(localStorage.getItem("app_favorites") || "[]");
-let activeDiscount = 0; // Discount percentage
+let activeDiscount = 0;
 
 // DOM Elements
 const restaurantTabsEl = document.getElementById("restaurant-tabs");
@@ -243,7 +243,6 @@ window.onload = () => {
     startFlashTimer();
 };
 
-// Countdown Timer Handler
 function startFlashTimer() {
     let duration = 3 * 3600 + 45 * 60 + 12;
     const timerEl = document.getElementById("flash-timer");
@@ -258,7 +257,6 @@ function startFlashTimer() {
     }, 1000);
 }
 
-// LocalStorage Handlers
 function loadSavedCustomerInfo() {
     const savedName = localStorage.getItem("cust_name");
     const savedPhone = localStorage.getItem("cust_phone");
@@ -271,7 +269,6 @@ function saveCustomerInfo(name, phone) {
     localStorage.setItem("cust_phone", phone);
 }
 
-// Render Restaurant Selector
 function renderRestaurantTabs() {
     restaurantTabsEl.innerHTML = "";
     Object.keys(restaurantsData).forEach(key => {
@@ -292,7 +289,6 @@ function renderRestaurantTabs() {
     });
 }
 
-// Select Restaurant Event
 function selectRestaurant(key) {
     currentRestaurantKey = key;
     currentCategory = "الكل";
@@ -306,9 +302,12 @@ function selectRestaurant(key) {
     renderMenuItems();
 }
 
-// Render Restaurant Banner Info
 function renderRestaurantInfo() {
     const rest = restaurantsData[currentRestaurantKey];
+    let cleanPhone = rest.phone.replace(/\D/g, '');
+    if (cleanPhone.startsWith('0')) cleanPhone = cleanPhone.substring(1);
+    if (!cleanPhone.startsWith('964')) cleanPhone = '964' + cleanPhone;
+
     restaurantInfoEl.innerHTML = `
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 z-10 relative">
             <div>
@@ -324,14 +323,13 @@ function renderRestaurantInfo() {
                     <span><i class="fa-solid fa-clock text-amber-500 ml-1"></i> ${rest.workHours}</span>
                 </div>
             </div>
-            <a href="https://api.whatsapp.com/send?phone=964${rest.phone.substring(1)}" target="_blank" class="inline-flex items-center justify-center gap-2 bg-emerald-950/80 text-emerald-400 border border-emerald-500/40 px-5 py-2.5 rounded-xl font-extrabold text-xs hover:bg-emerald-900 transition-all">
+            <a href="https://wa.me/${cleanPhone}" target="_blank" class="inline-flex items-center justify-center gap-2 bg-emerald-950/80 text-emerald-400 border border-emerald-500/40 px-5 py-2.5 rounded-xl font-extrabold text-xs hover:bg-emerald-900 transition-all">
                 <i class="fa-brands fa-whatsapp text-base"></i> التواصل المباشر
             </a>
         </div>
     `;
 }
 
-// Render Category Filters
 function renderCategoryTabs() {
     const categories = restaurantsData[currentRestaurantKey].categories;
     categoryTabsEl.innerHTML = "";
@@ -354,7 +352,6 @@ function renderCategoryTabs() {
     });
 }
 
-// Get Processed Items
 function getProcessedItems() {
     const rest = restaurantsData[currentRestaurantKey];
     let items = rest.items;
@@ -383,7 +380,6 @@ function getProcessedItems() {
     return items;
 }
 
-// Render Menu Grid
 function renderMenuItems() {
     currentCategoryTitleEl.innerText = searchQuery ? `نتائج البحث: "${searchQuery}"` : currentCategory;
     const items = getProcessedItems();
@@ -427,7 +423,6 @@ function renderMenuItems() {
     });
 }
 
-// Search & Sort Handlers
 function handleSearch() {
     const input = document.getElementById("search-input");
     searchQuery = input.value;
@@ -447,7 +442,6 @@ function handleSort() {
     renderMenuItems();
 }
 
-// Favorites System
 function toggleFavorite(itemId) {
     popSound.play();
     if (favorites.includes(itemId)) {
@@ -507,7 +501,6 @@ function toggleFavoritesView() {
     });
 }
 
-// Cart System
 function addToCart(itemId) {
     popSound.play();
     const rest = restaurantsData[currentRestaurantKey];
@@ -631,7 +624,6 @@ function toggleCartModal() {
     cartModalEl.classList.toggle("hidden");
 }
 
-// Toast Notifications System
 function showToast(message) {
     const container = document.getElementById("toast-container");
     const toast = document.createElement("div");
@@ -644,7 +636,6 @@ function showToast(message) {
     }, 2500);
 }
 
-// Interactive Feature: AI Assistant "أبو الخيرة"
 function openAIHelper() {
     popSound.play();
     Swal.fire({
@@ -657,7 +648,7 @@ function openAIHelper() {
             'fast': '🍔 أريد بركر أو وجبة سريعة ومقرمشة',
             'sweet': '🍦 أريد تحلية، عصائر أو كريب'
         },
-        inputPlaceholder: 'اختر المزاد المفضل لديك...',
+        inputPlaceholder: 'اختر المزاج المفضل لديك...',
         showCancelButton: true,
         confirmButtonText: 'اقترح لي الوجبة',
         cancelButtonText: 'إلغاء'
@@ -697,7 +688,6 @@ function openAIHelper() {
     });
 }
 
-// Interactive Feature: Spin the Wheel
 function openLuckyWheel() {
     popSound.play();
     Swal.fire({
@@ -783,15 +773,22 @@ function sendOrderWhatsApp() {
     message += `*المجموع النهائي:* ${finalTotal.toLocaleString()} د.ع\n`;
 
     const encoded = encodeURIComponent(message);
-    const targetPhone = "964" + rest.phone.substring(1);
+    
+    // Normalizing international phone standard: 9647843265253
+    let cleanPhone = rest.phone.replace(/\D/g, '');
+    if (cleanPhone.startsWith('0')) {
+        cleanPhone = cleanPhone.substring(1);
+    }
+    if (!cleanPhone.startsWith('964')) {
+        cleanPhone = '964' + cleanPhone;
+    }
 
-    // التوجيه المباشر للهاتف أو الكمبيوتر دون حظر المتصفح
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     
     if (isMobile) {
-        window.location.href = `whatsapp://send?phone=${targetPhone}&text=${encoded}`;
+        window.location.href = `https://wa.me/${cleanPhone}?text=${encoded}`;
     } else {
-        window.open(`https://web.whatsapp.com/send?phone=${targetPhone}&text=${encoded}`, '_blank');
+        window.open(`https://web.whatsapp.com/send?phone=${cleanPhone}&text=${encoded}`, '_blank');
     }
 
     try {
