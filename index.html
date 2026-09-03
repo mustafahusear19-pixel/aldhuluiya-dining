@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة مطاعم الضلوعية الملكية | Royal Dining</title>
+    <title>خدمات الضلوعية</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -26,55 +26,42 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts Cairo -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- External Royal Libraries -->
+    <!-- SweetAlert & Confetti & Howler -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-neutral-950 text-amber-50 font-['Cairo'] min-h-screen pb-28 selection:bg-amber-500 selection:text-black">
 
-    <!-- Top Flash Sale Bar -->
-    <div class="bg-gradient-to-r from-amber-700 via-amber-500 to-amber-700 text-black text-xs font-black py-2 px-4 text-center tracking-wide shadow-md flex items-center justify-center gap-2">
+    <!-- Top Banner -->
+    <div class="bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 text-neutral-950 text-xs font-black py-2 px-4 text-center shadow-md flex items-center justify-center gap-2">
         <i class="fa-solid fa-bolt animate-bounce"></i>
-        <span>عرض اليوم الملكي: استخدم عجلة الحظ الآن واحصل على خصومات فورية! ينتهي خلال: <span id="flash-timer" class="underline dir-ltr inline-block">03:45:12</span></span>
+        <span>منصة خدمات الضلوعية: جميع الخدمات في مكان واحد (مطاعم - مسواك - خدمة وصلني)!</span>
     </div>
 
     <!-- Header / Navbar -->
-    <header class="bg-neutral-900/90 backdrop-blur-md border-b border-amber-500/30 sticky top-0 z-40 shadow-2xl transition-all">
+    <header class="bg-neutral-900/90 backdrop-blur-md border-b border-amber-500/20 sticky top-0 z-40 shadow-2xl">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center gap-4">
             
             <!-- Logo -->
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-700 p-0.5 flex items-center justify-center shadow-lg shadow-amber-500/20">
-                    <div class="w-full h-full bg-neutral-950 rounded-[10px] flex items-center justify-center">
-                        <i class="fa-solid fa-crown text-amber-400 text-xl animate-pulse"></i>
-                    </div>
+            <div class="flex items-center gap-3 cursor-pointer" onclick="switchMainTab('restaurants')">
+                <div class="w-10 h-10 rounded-2xl bg-amber-500 flex items-center justify-center text-neutral-950 font-black text-xl shadow-lg shadow-amber-500/30">
+                    خ
                 </div>
                 <div>
-                    <h1 class="text-lg md:text-xl font-black gold-gradient-text tracking-wide leading-none">فخامة الضلوعية</h1>
-                    <span class="text-[10px] text-amber-500/70 font-semibold tracking-widest block mt-0.5">LUXURY DINING DELUXE</span>
+                    <h1 class="text-xl font-black text-amber-400 leading-none">خدمات الضلوعية</h1>
+                    <span class="text-[10px] text-neutral-400 font-semibold block mt-1">المطاعم • خدمة وصلني • المسواك</span>
                 </div>
             </div>
 
             <!-- Actions Bar -->
             <div class="flex items-center gap-3">
-                <!-- Favorites Toggle -->
-                <button onclick="toggleFavoritesView()" id="fav-btn" class="relative bg-neutral-800 hover:bg-neutral-800/80 text-amber-400 p-2.5 rounded-xl border border-amber-500/20 transition-all flex items-center justify-center">
-                    <i class="fa-solid fa-heart text-base"></i>
-                    <span id="fav-badge" class="absolute -top-1 -right-1 bg-red-600 text-white text-[10px] font-black rounded-full h-4 w-4 flex items-center justify-center border border-neutral-900 hidden">0</span>
+                <button onclick="toggleCartModal()" class="relative bg-amber-500/10 border border-amber-500/30 text-amber-400 px-4 py-2 rounded-xl flex items-center gap-2 font-black text-xs hover:bg-amber-500/20 transition">
+                    <i class="fa-solid fa-cart-shopping text-sm"></i>
+                    <span>السلة</span>
+                    <span id="cart-badge" class="bg-amber-500 text-neutral-950 text-[10px] font-black rounded-full h-4 w-4 flex items-center justify-center">0</span>
                 </button>
-
-                <!-- Cart Button -->
-                <div id="cart-button" onclick="toggleCartModal()" class="cursor-pointer bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 hover:brightness-110 text-neutral-950 font-black px-4 py-2 rounded-xl flex items-center gap-2.5 shadow-lg shadow-amber-500/20 transition-all active:scale-95">
-                    <div class="relative">
-                        <i class="fa-solid fa-bag-shopping text-lg"></i>
-                        <span id="cart-badge" class="absolute -top-2 -right-2 bg-neutral-950 text-amber-400 text-[10px] font-black rounded-full h-4 w-4 flex items-center justify-center border border-amber-500/40">0</span>
-                    </div>
-                    <span class="hidden sm:inline text-xs font-black">السلة</span>
-                    <span id="cart-header-price" class="text-xs font-black border-r border-neutral-950/20 pr-2">0 د.ع</span>
-                </div>
             </div>
 
         </div>
@@ -83,134 +70,179 @@
     <!-- Main Content Container -->
     <main class="container mx-auto px-4 mt-6">
 
-        <!-- Search & Global Filter Section -->
-        <section class="mb-8">
-            <div class="bg-neutral-900/60 border border-amber-500/20 rounded-2xl p-3 md:p-4 shadow-xl flex flex-col md:flex-row gap-3 items-center justify-between">
-                
-                <!-- Search Bar -->
-                <div class="relative w-full md:w-2/3">
+        <!-- Main Service Cards Nav -->
+        <section class="grid grid-cols-3 gap-3 mb-8">
+            <button onclick="switchMainTab('restaurants')" id="nav-btn-restaurants" class="main-service-card active">
+                <div class="icon-box"><i class="fa-solid fa-utensils"></i></div>
+                <span>المطاعم</span>
+            </button>
+            <button onclick="switchMainTab('grocery')" id="nav-btn-grocery" class="main-service-card">
+                <div class="icon-box"><i class="fa-solid fa-basket-shopping"></i></div>
+                <span>المسواك</span>
+            </button>
+            <button onclick="switchMainTab('taxi')" id="nav-btn-taxi" class="main-service-card">
+                <div class="icon-box"><i class="fa-solid fa-car"></i></div>
+                <span>خدمة وصلني</span>
+            </button>
+        </section>
+
+        <!-- SECTION 1: RESTAURANTS & FOOD -->
+        <div id="section-restaurants" class="service-section">
+            <!-- Search Section -->
+            <div class="mb-6">
+                <div class="relative w-full">
                     <i class="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-amber-500/60 text-sm"></i>
-                    <input type="text" id="search-input" oninput="handleSearch()" placeholder="ابحث عن وجبة، شاورما، بركر، بيتزا..." class="w-full pl-4 pr-11 py-2.5 bg-neutral-950/80 border border-neutral-800 rounded-xl text-amber-100 placeholder-neutral-500 text-sm focus:outline-none focus:border-amber-500/60 transition-all">
-                    <button onclick="clearSearch()" id="clear-search-btn" class="hidden absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-amber-400 text-xs">
-                        <i class="fa-solid fa-circle-xmark"></i>
+                    <input type="text" id="search-input" oninput="handleSearch()" placeholder="ابحث عن وجبة، مطعم، بيتزا..." class="w-full pl-4 pr-11 py-3 bg-neutral-900 border border-neutral-800 rounded-2xl text-amber-100 placeholder-neutral-500 text-xs focus:outline-none focus:border-amber-500/60 transition-all">
+                </div>
+            </div>
+
+            <!-- Restaurant Tabs -->
+            <div class="mb-6">
+                <div class="flex items-center justify-between mb-3">
+                    <h2 class="text-xs font-black text-amber-400 uppercase tracking-widest"><i class="fa-solid fa-store ml-1"></i> قائمة المطاعم</h2>
+                </div>
+                <div id="restaurant-tabs" class="flex gap-3 overflow-x-auto pb-2 hide-scrollbar"></div>
+            </div>
+
+            <!-- Restaurant Info Banner -->
+            <div id="restaurant-info" class="bg-neutral-900 border border-neutral-800 rounded-2xl p-4 mb-6"></div>
+
+            <!-- Categories -->
+            <div id="category-tabs" class="flex gap-2 overflow-x-auto pb-3 mb-6 hide-scrollbar"></div>
+
+            <!-- Menu Grid -->
+            <div id="menu-items" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+        </div>
+
+        <!-- SECTION 2: GROCERY / MISWAK -->
+        <div id="section-grocery" class="service-section hidden">
+            <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-5 mb-6 text-center">
+                <h2 class="text-xl font-black text-amber-400 mb-2">🍎 مسواك وبقالية الضلوعية</h2>
+                <p class="text-xs text-neutral-400">اختر من المواد الجاهزة أو اكتب مسواكك الخاص وسنقوم بتوفيره فوراً</p>
+            </div>
+
+            <!-- Custom Grocery Order Box -->
+            <div class="bg-gradient-to-r from-amber-500/10 via-neutral-900 to-amber-500/10 border border-amber-500/30 rounded-2xl p-5 mb-8 shadow-xl">
+                <h3 class="text-sm font-black text-amber-400 mb-2 flex items-center gap-2">
+                    <i class="fa-solid fa-pen-to-square text-amber-500"></i> طلب مسواك خاص (اكتب قائمة طلباتك)
+                </h3>
+                <p class="text-xs text-neutral-400 mb-3">اكتب كل المواد التي تحتاجها (مثلاً: 2 كيلو طماطم، 1 كيس تمن، 3 علب حليب...)</p>
+                
+                <textarea id="custom-grocery-text" rows="3" placeholder="اكتب طلبك الخاص بالتفصيل هنا..." class="w-full p-3 bg-neutral-950 border border-neutral-800 rounded-xl text-xs text-amber-100 focus:outline-none focus:border-amber-500 mb-3"></textarea>
+                
+                <button onclick="addCustomGroceryToCart()" class="w-full bg-amber-500 hover:bg-amber-400 text-neutral-950 font-black py-3 rounded-xl text-xs flex items-center justify-center gap-2 shadow-lg transition active:scale-95">
+                    <i class="fa-solid fa-cart-plus"></i> إضافة الطلب الخاص إلى السلة
+                </button>
+            </div>
+
+            <div class="text-xs font-black text-amber-400 mb-3 uppercase tracking-wider"><i class="fa-solid fa-list-check ml-1"></i> أو اختر من القائمة السريعة:</div>
+            <div id="grocery-category-tabs" class="flex gap-2 overflow-x-auto pb-3 mb-6 hide-scrollbar"></div>
+            <div id="grocery-items" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+        </div>
+
+        <!-- SECTION 3: WASALNI (TAXI) RIDE -->
+        <div id="section-taxi" class="service-section hidden">
+            <div class="bg-neutral-900 border border-neutral-800 rounded-2xl p-6 max-w-xl mx-auto shadow-2xl">
+                <div class="text-center mb-6">
+                    <div class="w-16 h-16 bg-amber-500/10 rounded-full flex items-center justify-center mx-auto mb-3 border border-amber-500/30">
+                        <i class="fa-solid fa-car text-amber-400 text-3xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-black text-amber-400">خدمة وصلني الضلوعية</h2>
+                    <p class="text-xs text-neutral-400 mt-1">حدد موقع الانطلاق والوجهة وسيصلك أقرب سائق</p>
+                </div>
+
+                <form onsubmit="handleTaxiOrder(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-extrabold text-neutral-300 mb-1.5">موقع الانطلاق (منين؟)</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-circle-dot absolute right-3 top-1/2 -translate-y-1/2 text-emerald-500 text-xs"></i>
+                            <input type="text" id="taxi-from" placeholder="مثال: قرب جامع الضلوعية الكبير (أو اترك فارغاً لاستخدام الـ GPS)" class="w-full pr-9 pl-3 py-3 bg-neutral-950 border border-neutral-800 rounded-xl text-xs text-amber-100 focus:outline-none focus:border-amber-500">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-extrabold text-neutral-300 mb-1.5">الوجهة (لوين؟)</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-location-dot absolute right-3 top-1/2 -translate-y-1/2 text-red-500 text-xs"></i>
+                            <input type="text" id="taxi-to" required placeholder="مثال: الشارع الحولي / المستشفى" class="w-full pr-9 pl-3 py-3 bg-neutral-950 border border-neutral-800 rounded-xl text-xs text-amber-100 focus:outline-none focus:border-amber-500">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-extrabold text-neutral-300 mb-1.5">نوع السيارة</label>
+                            <select id="taxi-type" onchange="calculateTaxiFare()" class="w-full p-3 bg-neutral-950 border border-neutral-800 rounded-xl text-xs text-amber-100 focus:outline-none focus:border-amber-500">
+                                <option value="standard">سيارة العادية (اقتصادي)</option>
+                                <option value="vip">سيارة VIP (تكييف مريح)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-extrabold text-neutral-300 mb-1.5">رقم الهاتف</label>
+                            <input type="tel" id="taxi-phone" required placeholder="078xxxxxxx" class="w-full p-3 bg-neutral-950 border border-neutral-800 rounded-xl text-xs text-amber-100 focus:outline-none focus:border-amber-500">
+                        </div>
+                    </div>
+
+                    <div class="bg-neutral-950 border border-amber-500/20 p-4 rounded-xl flex justify-between items-center my-4">
+                        <span class="text-xs font-bold text-neutral-300">الأجرة التقديرية داخل القضاء:</span>
+                        <span id="taxi-fare" class="text-base font-black text-amber-400">3,000 د.ع</span>
+                    </div>
+
+                    <button type="submit" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:brightness-110 text-neutral-950 font-black py-3.5 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 transition active:scale-95">
+                        <i class="fa-solid fa-paper-plane text-base"></i> تأكيد وطلب خدمة وصلني مع إرسال الـ GPS
                     </button>
-                </div>
-
-                <!-- Sorting Dropdown -->
-                <div class="w-full md:w-1/3 flex items-center gap-2">
-                    <span class="text-xs text-amber-500/70 font-bold whitespace-nowrap"><i class="fa-solid fa-arrow-down-wide-short ml-1"></i> ترتيب:</span>
-                    <select id="sort-select" onchange="handleSort()" class="w-full py-2.5 px-3 bg-neutral-950/80 border border-neutral-800 rounded-xl text-amber-100 text-xs focus:outline-none focus:border-amber-500/60 transition-all">
-                        <option value="default">الافتراضي</option>
-                        <option value="price-low">السعر: من الأقل للأعلى</option>
-                        <option value="price-high">السعر: من الأعلى للأقل</option>
-                        <option value="name">الاسم (أبجدي)</option>
-                    </select>
-                </div>
-
+                </form>
             </div>
-        </section>
-
-        <!-- Restaurant Selector Tabs -->
-        <section class="mb-8">
-            <div class="flex items-center justify-between mb-3">
-                <h2 class="text-amber-400/90 text-xs font-extrabold tracking-widest uppercase flex items-center gap-2">
-                    <i class="fa-solid fa-utensils text-amber-500"></i> قائمة المطاعم المتاحة
-                </h2>
-                <span id="restaurants-count" class="text-[11px] text-neutral-500 font-bold">4 مطاعم</span>
-            </div>
-            <div id="restaurant-tabs" class="flex gap-3 overflow-x-auto pb-3 hide-scrollbar"></div>
-        </section>
-
-        <!-- Selected Restaurant Banner / Header -->
-        <section id="restaurant-info" class="bg-gradient-to-r from-neutral-900 via-neutral-900/90 to-amber-950/30 border border-amber-500/30 rounded-2xl p-5 shadow-2xl mb-8 relative overflow-hidden"></section>
-
-        <!-- Category Tabs -->
-        <section class="mb-6">
-            <div id="category-tabs" class="flex gap-2 overflow-x-auto pb-2 hide-scrollbar"></div>
-        </section>
-
-        <!-- Menu Grid -->
-        <section>
-            <div class="flex items-center justify-between mb-6">
-                <h3 id="current-category-title" class="text-2xl font-black text-amber-400 border-r-4 border-amber-500 pr-3">الكل</h3>
-                <span id="items-count-badge" class="text-xs font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20 px-3 py-1 rounded-full">0 وجبة</span>
-            </div>
-            <div id="menu-items" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
-        </section>
+        </div>
 
     </main>
 
-    <!-- Floating Interactive Action Buttons -->
+    <!-- Floating Actions Buttons -->
     <div class="fixed bottom-6 right-6 z-40 flex flex-col gap-3">
-        <button onclick="openAIHelper()" title="مساعد الذكاء الاصطناعي" class="w-13 h-13 rounded-full bg-gradient-to-br from-amber-400 via-amber-500 to-amber-700 text-neutral-950 font-black shadow-2xl flex items-center justify-center text-xl hover:scale-110 active:scale-95 transition-all border-2 border-amber-300 shadow-amber-500/30">
-            🤖
-        </button>
-        <button onclick="openLuckyWheel()" title="عجلة الحظ الذهبية" class="w-13 h-13 rounded-full bg-gradient-to-br from-purple-600 via-amber-500 to-amber-600 text-white font-black shadow-2xl flex items-center justify-center text-xl hover:scale-110 active:scale-95 transition-all border-2 border-amber-300 shadow-purple-900/50 animate-bounce">
+        <button onclick="openLuckyWheel()" title="عجلة الحظ الذهبية" class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-amber-500 text-white font-black shadow-2xl flex items-center justify-center text-lg hover:scale-110 transition active:scale-95 border border-amber-300 animate-bounce">
             🎡
         </button>
     </div>
 
-    <!-- Cart Drawer / Modal -->
-    <div id="cart-modal" class="fixed inset-0 bg-neutral-950/80 backdrop-blur-md z-50 hidden flex justify-end transition-all">
-        <div class="bg-neutral-900 border-r md:border-l border-amber-500/30 w-full max-w-md h-full flex flex-col shadow-2xl">
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-neutral-950/80 backdrop-blur-md z-50 hidden flex justify-end">
+        <div class="bg-neutral-900 border-r border-amber-500/20 w-full max-w-md h-full flex flex-col shadow-2xl">
             
-            <div class="p-4 bg-neutral-950 border-b border-amber-500/30 text-amber-400 flex justify-between items-center">
+            <div class="p-4 bg-neutral-950 border-b border-neutral-800 text-amber-400 flex justify-between items-center">
                 <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-crown text-amber-500 text-lg"></i>
-                    <h3 class="text-base font-black">سلة الطلبات الفاخرة</h3>
+                    <i class="fa-solid fa-bag-shopping text-lg"></i>
+                    <h3 class="text-base font-black">سلة الطلبات</h3>
                 </div>
-                <button onclick="toggleCartModal()" class="text-neutral-400 hover:text-amber-400 text-2xl font-bold transition">&times;</button>
+                <button onclick="toggleCartModal()" class="text-neutral-400 hover:text-white text-2xl font-bold">&times;</button>
             </div>
 
-            <div class="p-3 bg-neutral-950/50 border-b border-amber-500/10 flex gap-2">
-                <button onclick="setDeliveryType('delivery')" id="btn-delivery" class="flex-1 py-2 rounded-xl text-xs font-extrabold transition-all border border-amber-500/40 bg-amber-500/20 text-amber-300">
-                    <i class="fa-solid fa-motorcycle ml-1"></i> توصيل للمنزل
-                </button>
-                <button onclick="setDeliveryType('pickup')" id="btn-pickup" class="flex-1 py-2 rounded-xl text-xs font-extrabold transition-all border border-neutral-800 bg-neutral-900 text-neutral-400">
-                    <i class="fa-solid fa-store ml-1"></i> استلام من المطعم
-                </button>
-            </div>
+            <div id="cart-items-container" class="flex-1 p-4 overflow-y-auto divide-y divide-neutral-800"></div>
 
-            <div id="cart-items-container" class="flex-1 p-4 overflow-y-auto divide-y divide-amber-500/10"></div>
-
-            <div class="p-5 border-t border-amber-500/30 bg-neutral-950">
-                <div class="space-y-2 mb-4 text-xs font-bold text-neutral-300">
-                    <div class="flex justify-between">
-                        <span>مجموع الوجبات:</span>
-                        <span id="subtotal-price" class="text-amber-100 font-extrabold">0 د.ع</span>
-                    </div>
-                    <div class="flex justify-between text-emerald-400 hidden" id="discount-row">
-                        <span>الخصم المكتسب:</span>
-                        <span id="discount-price" class="font-extrabold">-0 د.ع</span>
-                    </div>
-                    <div class="flex justify-between" id="delivery-fee-row">
-                        <span>أجرة التوصيل:</span>
-                        <span id="delivery-fee-price" class="text-amber-400 font-extrabold">2,000 د.ع</span>
-                    </div>
-                    <div class="flex justify-between text-base font-black border-t border-neutral-800 pt-2 text-amber-400">
-                        <span>المجموع النهائي:</span>
-                        <span id="cart-total-price">0 د.ع</span>
-                    </div>
+            <div class="p-5 border-t border-neutral-800 bg-neutral-950 space-y-3">
+                <div class="flex justify-between text-xs font-bold text-neutral-300">
+                    <span>المجموع الكلي:</span>
+                    <span id="cart-total-price" class="text-amber-400 text-base font-black">0 د.ع</span>
                 </div>
 
-                <div class="space-y-2.5 mb-4">
-                    <input type="text" id="cust-name" placeholder="الاسم الكامل *" class="w-full p-2.5 bg-neutral-900 border border-amber-500/20 rounded-xl text-amber-100 placeholder-neutral-500 text-xs focus:outline-none focus:border-amber-500/60">
-                    <input type="tel" id="cust-phone" placeholder="رقم الهاتف *" class="w-full p-2.5 bg-neutral-900 border border-amber-500/20 rounded-xl text-amber-100 placeholder-neutral-500 text-xs focus:outline-none focus:border-amber-500/60">
-                    <textarea id="cust-notes" placeholder="العنوان بالتفصيل أو أي ملاحظات إضافية..." rows="2" class="w-full p-2.5 bg-neutral-900 border border-amber-500/20 rounded-xl text-amber-100 placeholder-neutral-500 text-xs focus:outline-none focus:border-amber-500/60"></textarea>
+                <input type="text" id="cust-name" placeholder="الاسم الكامل *" class="w-full p-2.5 bg-neutral-900 border border-neutral-800 rounded-xl text-amber-100 text-xs">
+                <input type="tel" id="cust-phone" placeholder="رقم الهاتف *" class="w-full p-2.5 bg-neutral-900 border border-neutral-800 rounded-xl text-amber-100 text-xs">
+                <textarea id="cust-notes" placeholder="العنوان والتفاصيل..." rows="2" class="w-full p-2.5 bg-neutral-900 border border-neutral-800 rounded-xl text-amber-100 text-xs"></textarea>
+
+                <div class="flex items-center gap-2 bg-neutral-900 p-2.5 border border-neutral-800 rounded-xl">
+                    <input type="checkbox" id="send-location" class="accent-amber-500 h-4 w-4" checked>
+                    <label for="send-location" class="text-xs text-neutral-300 cursor-pointer">إرفاق موقعي الجغرافي (GPS) تلقائياً مع الطلب</label>
                 </div>
 
-                <button onclick="sendOrderWhatsApp()" class="w-full bg-gradient-to-r from-emerald-600 via-emerald-500 to-green-500 hover:brightness-110 text-neutral-950 font-black py-3.5 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/50 transition-all active:scale-95">
-                    <i class="fa-brands fa-whatsapp text-2xl"></i> إرسال الطلب عبر الواتساب
+                <button onclick="sendOrderWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-neutral-950 font-black py-3 rounded-xl flex items-center justify-center gap-2 transition active:scale-95">
+                    <i class="fa-brands fa-whatsapp text-xl"></i> إرسال الطلب عبر الواتساب
                 </button>
             </div>
 
         </div>
     </div>
 
-    <!-- Toast Notification Container -->
+    <!-- Toast Notifications -->
     <div id="toast-container" class="fixed bottom-5 left-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
 
-    <!-- Application Script -->
     <script src="script.js"></script>
 </body>
 </html>
